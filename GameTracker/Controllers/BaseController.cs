@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services;
+using Services.Services;
 
 namespace GameTracker.Controllers
 {
@@ -7,7 +7,7 @@ namespace GameTracker.Controllers
     {
         #region Miembros privados
 
-        private readonly IServiceProvider serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace GameTracker.Controllers
 
         public BaseController(IServiceProvider serviceProvider)
         {
-            this.serviceProvider = serviceProvider;
+            this._serviceProvider = serviceProvider;
             Logger = (ILogger)serviceProvider.GetService(typeof(ILogger));
             UsersService = (IUsersService)serviceProvider.GetService(typeof(IUsersService));
         }
