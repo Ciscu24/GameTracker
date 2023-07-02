@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Models.Models;
 
 namespace GameTracker.Controllers
 {
@@ -21,6 +22,7 @@ namespace GameTracker.Controllers
         public async Task<IActionResult> GetAll()
         {
             var response = new GenericResponseDto();
+
             try
             {
                 response.Data = await UsersService.GetAll();

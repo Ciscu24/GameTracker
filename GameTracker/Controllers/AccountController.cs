@@ -44,6 +44,7 @@ namespace GameTracker.Controllers
                     Subject = new ClaimsIdentity(new[]
                     {
                         new Claim(Literals.Claim_UserId, user.Id),
+                        new Claim(Literals.Claim_UserName, user.UserName),
                         new Claim(Literals.Claim_FullName, user.FullName)
                     }),
                     Expires = DateTime.UtcNow.AddHours(1),

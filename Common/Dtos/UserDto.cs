@@ -12,7 +12,10 @@
 
         public string Password { get; set; }
 
-        public List<UserDto> Followers { get; set; }
-        public List<UserDto> Following { get; set; }
+        public IEnumerable<UserDto> Followers { get; set; }
+
+        public IEnumerable<UserDto> Following { get; set; }
+
+        public IEnumerable<PlayerGameStatusDto> PlayerGameStatus { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 
@@ -11,9 +12,11 @@ using Models.Context;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702184938_PlayerGameStatus")]
+    partial class PlayerGameStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GamesId");
 
-                    b.ToTable("CollectionsGames", (string)null);
+                    b.ToTable("CollectionModelGameModel");
                 });
 
             modelBuilder.Entity("ConsoleModelGameModel", b =>
@@ -49,7 +52,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GamesId");
 
-                    b.ToTable("ConsolesGames", (string)null);
+                    b.ToTable("ConsoleModelGameModel");
                 });
 
             modelBuilder.Entity("GameModelGenreModel", b =>
@@ -64,7 +67,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("GenresGames", (string)null);
+                    b.ToTable("GameModelGenreModel");
                 });
 
             modelBuilder.Entity("Models.Models.CollectionModel", b =>

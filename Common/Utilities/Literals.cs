@@ -11,6 +11,7 @@ namespace Common.Utilities
         #region Claims de los usuarios
 
         public static string Claim_UserId       = "UserId";
+        public static string Claim_UserName     = "UserName";
         public static string Claim_FullName     = "FullName";
 
         #endregion

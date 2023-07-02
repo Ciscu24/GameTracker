@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 
@@ -11,9 +12,11 @@ using Models.Context;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627181541_GameModels")]
+    partial class GameModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GamesId");
 
-                    b.ToTable("CollectionsGames", (string)null);
+                    b.ToTable("CollectionModelGameModel");
                 });
 
             modelBuilder.Entity("ConsoleModelGameModel", b =>
@@ -49,7 +52,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GamesId");
 
-                    b.ToTable("ConsolesGames", (string)null);
+                    b.ToTable("ConsoleModelGameModel");
                 });
 
             modelBuilder.Entity("GameModelGenreModel", b =>
@@ -64,7 +67,7 @@ namespace Models.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("GenresGames", (string)null);
+                    b.ToTable("GameModelGenreModel");
                 });
 
             modelBuilder.Entity("Models.Models.CollectionModel", b =>
@@ -186,36 +189,6 @@ namespace Models.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("Models.Models.PlayerGameStatusModel", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("GameId")
-                        .HasColumnType("bigint");
-
-                    b.Property<TimeSpan?>("BestCompletionTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime?>("FinishDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("InitDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimesBeaten")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "GameId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("PlayerGameStatus");
-                });
-
             modelBuilder.Entity("Models.Models.UserModel", b =>
                 {
                     b.Property<string>("Id")
@@ -329,25 +302,6 @@ namespace Models.Migrations
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("Models.Models.PlayerGameStatusModel", b =>
-                {
-                    b.HasOne("Models.Models.GameModel", "Game")
-                        .WithMany("PlayerGameStatus")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Models.UserModel", "User")
-                        .WithMany("PlayerGameStatus")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("UserModelUserModel", b =>
                 {
                     b.HasOne("Models.Models.UserModel", null)
@@ -366,8 +320,6 @@ namespace Models.Migrations
             modelBuilder.Entity("Models.Models.GameModel", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("PlayerGameStatus");
                 });
 
             modelBuilder.Entity("Models.Models.UserModel", b =>
@@ -375,8 +327,6 @@ namespace Models.Migrations
                     b.Navigation("Collections");
 
                     b.Navigation("Comments");
-
-                    b.Navigation("PlayerGameStatus");
                 });
 #pragma warning restore 612, 618
         }

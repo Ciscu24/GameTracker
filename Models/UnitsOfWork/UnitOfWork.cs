@@ -31,6 +31,18 @@ namespace Models.UnitsOfWork
 
         public GenericRepository<UserModel> UsersRepository { get; set; }
 
+        public GenericRepository<GameModel> GamesRepository { get; set; }
+
+        public GenericRepository<PlayerGameStatusModel> PlayerGameStatusRepository { get; set; }
+
+        public GenericRepository<CollectionModel> CollectionsRepository { get; set; }
+
+        public GenericRepository<CommentModel> CommentsRepository { get; set; }
+
+        public GenericRepository<ConsoleModel> ConsolesRepository { get; set; }
+
+        public GenericRepository<GenreModel> GenresRepository { get; set; }
+
         #endregion
 
         #region Constructores
@@ -40,8 +52,17 @@ namespace Models.UnitsOfWork
             _context = context;
             _logger = logger;
 
-            // Inicialización de los repositorios
+            #region Inicialización de los repositorios
+
             UsersRepository = new GenericRepository<UserModel>(_context, _logger);
+            GamesRepository = new GenericRepository<GameModel>(_context, _logger);
+            PlayerGameStatusRepository = new GenericRepository<PlayerGameStatusModel>(_context, _logger);
+            CollectionsRepository = new GenericRepository<CollectionModel>(_context, _logger);
+            CommentsRepository = new GenericRepository<CommentModel>(_context, _logger);
+            ConsolesRepository = new GenericRepository<ConsoleModel>(_context, _logger);
+            GenresRepository = new GenericRepository<GenreModel>(_context, _logger);
+
+            #endregion
         }
 
         #endregion
